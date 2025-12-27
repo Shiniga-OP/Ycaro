@@ -1,0 +1,15 @@
+=== Status visual ===
+
+=== Inicialização ===
+
+o LED verde serve para sinalização rápida de uma inicialização saudável do console, que se apaga após iniciar com o sistema operacional/bootloader completo sem erros.
+
+Caso haja uma inicialização instável do sistema, o LED vermelho será ligado e piscará repetidamente.
+
+Após a primeira passada de verificação, o LED verde deve acender e se apagar para sinalizar status saudável, e após isso, iniciará a verificação do cartucho, caso haja erro na leitura ou inicialização do cartucho, o LED vermelho também piscará repetidamente. Caso contrário, o LED verde novamente acenderá e se apagará quando o processo de leitura ou inicialização acabar.
+
+=== Energia ===
+
+Caso a energia passada esteja fraca ou esteja acabando, o LED vermelho estará aceso constantemente, e emitirá um som específico ao acender.
+
+Em recarga caso possua bateria, o LED azul acenderá e ficará constantemente ligado até que a carga máxima seja atingida, assim apagando. Caso o jogo esteja salvando algo no cartucho MicroSD, o LED azul irá piscar repetidamente até que o processo acabe, indicando que interromper o fluxo de energia pode corromper os arquivos alterados ou tentativas de gravar no cartucho durante o salvamento, além de avisar o usuário que o cartucho estaria salvando algo na pasta "tmp/" do cartucho.

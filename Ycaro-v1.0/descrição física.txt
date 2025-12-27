@@ -1,0 +1,13 @@
+=== Descrição física ===
+
+A carcaça do console segue um formato suavemente arredondado nas bordas. Chegando a aproximadamente 8,7 cm de largura e 16,7 cm de comprimento.
+
+Com botões nos lados do console, para conforto, os botões ficam cerca de 4-5 cm da carcaça. Os botões tem cerca de 12 mm cúbicos.
+
+A tela no meio, de aproximadamente 5,5-5,7 cm de largura e 6-6,5 cm. Fica exposta, em um local elevado na carcaça, cerca de 20 mm acima dos botões, que dá acesso ao conector para alimentação USB-C ao lado direito do usuário, e o espaço para os cartuchos MicroSD ao lado esquerdo do usuário.
+
+A saída de áudio com aproximadamente 5-6 furos de 12 mm, também serve para ventilação e troca de ar do console, utilizando o áudio emitido pelo console para "empurrar" o ar para fora, fazendo uma troca de sr constante durante a jogatina, e evitando acúmulo de bolhas de ar quente dentro do console fechado, aproveitando a energia do áudio para troca térmica.
+
+Dentro da carcaça de plástico, uma placa protótipo com 400 furos, aproximadamente 8,5 cm de largura e 16,5 cm de comprimento. Os componentes não são soldados, e sim diretamente ligados na placa protótipo. Isso evita problemas com solda de má qualidade e más conexões com o tempo, e aumenta o tempo de vida útil do console, além de poder ser manualmente consertado ou trocar componentes de forma mais fácil.
+
+A um conjunto de 3 LEDs acima da tela. Verde, vermelho e azul, de aproximadamente 30 mm de altura e 20 mm de largura e espessura.
