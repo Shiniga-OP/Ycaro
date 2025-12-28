@@ -17,3 +17,15 @@ Este modelo protótipo é um console para jogos 16-bit com cartuchos MicroSD de 
 8. Possuí Wi-Fi.
 9. Possuí Bluetooth.
 10. Linguagem principal como Assembly RISC-V.
+11. Saída de áudio amplificador I2S interface DaC (não confirmado).
+
+## Ycaro v1.1
+
+O mesmo do anterior, mas com suporte a pilhas para se tornar um portátil.
+Porém com áudio confirmado de alta qualidade.
+
+## Especificações:
+
+1. módulo amplificador Max98357 I2S DaC 3W QFN para saída de áudio e refrigeramento do console.
+
+Recomendado 3 pilhas de 1,5V. Para durabilidade, considere recarregáveis AA de Lítio (Li-ion).
