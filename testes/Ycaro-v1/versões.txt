@@ -1,0 +1,5 @@
+=== Versões ===
+
+Ycaro v1.0 é um console de mesa com alimentação USB-C (5V).
+
+Ycaro v1.1 é um console de mesa e portátil à base de pilhas AA Lítio (Li-ion 1,5V).

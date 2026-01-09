@@ -1,0 +1,39 @@
+=== Otimizações ===
+
+=== Otimização de energia ===
+
+Primeiro.
+
+Para não gastar energia com ventoinhas na versão portátil que usa pilhas, o console utiliza as ondas sonoras do amplificador para empurrar o mínimo de ar, e fazer a troca pela saída de áudio. Com um processador tão eficiente em baixo consumo de energia como o RISC-V de 160MHz, apenas uma troca de ar mínima já é o suficiente para resfriar o circuito.
+
+Segundo.
+
+Para que o console possa economizar energia em momentos de grande espera ou esquecimento do usuário, a tela do console se apaga após 5 minutos sem ação, e se acende novamente apenas se algum botão ser pressionado. Isso funciona para caso uma jogatina exija uma espera muito longa ou algo do tipo.
+
+Terceiro.
+
+A luz de LED verde se acende para sinalizar status saudável, e se apaga para economizar energia. LEDs de aviso não economizam energia porque sinalizar algum problema de status ou energia fraca são mais importantes do que energia.
+
+=== Otimização do tamanho de jogos ===
+
+Para economizar o espaço útil de 3.9 MBs da Flash e 320 KBs de RAM, reservei o gravamento dela APENAS para BINÁRIOS executáveis do jogo, pois são os únicos que precisam ser executados sem gastar RAM.
+
+Pois então, os salvamentos de variáveis temporárias ou progresso, são gravados e lidos do próprio cartucho MicroSD, em uma estrutura simples de:
+
+jogo:
+-jogo.bin
+-recursos:
+--jogador.yp
+--musica.ya
+tmp:
+-progresso.txt
+
+Assim os recursos de imagem e áudio que são consideravelmente pesados, podem ser lidos do MicroSD ao invés de carregar na Flash, o que limitaria muito o desenvolvimento de jogos.
+
+=== Otimização da vida útil da Flash ===
+
+A vida da Flash de aproximadamente 100 mil ciclos de escrita e sobrescrita, iria desgastar rapidamente pela troca de cartuchos. Então, projetei um sistema de verificação do nome e versão do jogo colocado no console.
+
+Ao cartucho ser colocado no slot MicroSD, o console iria ler o nome e versão do jogo disponibilizadas pelo desenvolvedor, e assim iria gravar o jogo na Flash. Caso o usuário conecte o mesmo cartucho novamente, o console irá verificar as variáveis guardadas, e apenas executar o código já gravado na Flash.
+
+Isso economiza muito mais a vida útil da Flash, ao invés de gravar a Flash toda vez em que o cartucho for colocado, apenas regrava a Flash quando o jogo for *trocado* pelo usuário.

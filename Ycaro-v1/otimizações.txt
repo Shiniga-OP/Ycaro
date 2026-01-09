@@ -1,5 +1,19 @@
 === Otimizações ===
 
+=== Otimização de energia ===
+
+Primeiro.
+
+Para não gastar energia com ventoinhas na versão portátil que usa pilhas, o console utiliza as ondas sonoras do amplificador para empurrar o mínimo de ar, e fazer a troca pela saída de áudio. Com um processador tão eficiente em baixo consumo de energia como o RISC-V de 160MHz, apenas uma troca de ar mínima já é o suficiente para resfriar o circuito.
+
+Segundo.
+
+Para que o console possa economizar energia em momentos de grande espera ou esquecimento do usuário, a tela do console se apaga após 5 minutos sem ação, e se acende novamente apenas se algum botão ser pressionado. Isso funciona para caso uma jogatina exija uma espera muito longa ou algo do tipo.
+
+Terceiro.
+
+A luz de LED verde se acende para sinalizar status saudável, e se apaga para economizar energia. LEDs de aviso não economizam energia porque sinalizar algum problema de status ou energia fraca são mais importantes do que energia.
+
 === Otimização do tamanho de jogos ===
 
 Para economizar o espaço útil de 3.9 MBs da Flash e 320 KBs de RAM, reservei o gravamento dela APENAS para BINÁRIOS executáveis do jogo, pois são os únicos que precisam ser executados sem gastar RAM.
