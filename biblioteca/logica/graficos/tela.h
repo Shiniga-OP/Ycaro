@@ -11,10 +11,13 @@ typedef struct {
 
 static void* ctx;
 
-void* _iniciar_renderizacao(Tela* tela);
-void _att_renderizacao(Tela* tela, void* dado);
-void _esperar_renderizacao(int ms);
-void _liberar_renderizacao(void* dadovoids);
+Tela* tela_iniciar(int largura, int altura);
+void render_pixel(Tela* t, int x, int y, unsigned short cor);
+void render_retangulo(Tela* t, int x, int y, int largura, int altura, unsigned short cor);
+void render_limpar(Tela* t, unsigned short cor);
+void render_att(Tela* t);
+void render_esperar(int ms);
+void render_liberar(Tela* t);
 
 #include "../../sistema/video.h"
 

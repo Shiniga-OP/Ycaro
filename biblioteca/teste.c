@@ -1,8 +1,7 @@
 #include "logica/graficos/tela.h"
 #include "logica/graficos/yimg.h"
-
+#include "logica/controle.h"
 #include "logica/config.h"
-#include "sistema/video.h"
 
 int main() {
     Tela* tela = tela_iniciar(240, 240);
@@ -11,22 +10,34 @@ int main() {
     YImg *palito = yimg_carregar("kit-ycaro/palito.yimg");
     
     int jogador_x = 100;
+    int jogador_y = 100;
+    int VELO = 2;
     int rodando = 1;
     // loop Principal
     while(rodando) {
+        controle_att();
         if(EVENTO_GLOBAL == EVENTO_SAIDA) {
             rodando = 0;
         }
-        // --- LOGICA DO JOGO ---
-        jogador_x += 1; // move o bloco para a direita
-        if(jogador_x > tela->largura) jogador_x = -50;
-
-        // --- RENDER NO FRAMEBUFFER ---
+        // === LOGICA DO JOGO ===
+        if(controle_ler(CONTROLE_DIREITA)) {
+            jogador_x += VELO;
+        }
+        if(controle_ler(CONTROLE_ESQUERDA)) {
+            jogador_x -= VELO;
+        }
+        if(controle_ler(CONTROLE_BAIXO)) {
+            jogador_y += VELO;
+        }
+        if(controle_ler(CONTROLE_CIMA)) {
+            jogador_y -= VELO;
+        }
+        // === RENDERIZAÇÃO ===
         // limpa o framebuffer com preto(0x0000)
         render_limpar(tela, 0);
 
         // desenha um "jogador"(retangulo vermelho, 0xF800)
-        render_retangulo(tela, jogador_x, 100, 50, 30, 0xF800);
+        render_retangulo(tela, jogador_x, jogador_y, 50, 30, 0xF800);
         
         yimg_render(tela, palito, 10, 20);
         

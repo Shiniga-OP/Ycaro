@@ -12,7 +12,6 @@ typedef enum {
 
 // formato RLE: sequência de blocos[uint16_t cor][uint8_t repeticoes]
 // repeticoes = quantidade de vezes que 'cor' se repete(1..255)
-
 typedef struct {
     uint8_t largura;
     uint8_t altura;
@@ -20,6 +19,11 @@ typedef struct {
     uint16_t dados_tam; // quantidade de uint16_t/blocos em 'dados'
     uint16_t* dados;
 } YImg;
+
+static uint32_t yimg__contar_blocos_rle(const uint16_t* pixels, int total);
+YImg* yimg_carregar(const char *caminho);
+void yimg_render(Tela* t, YImg* img, int x, int y);
+void yimg_liberar(YImg *img);
 
 // conta quantos blocos RLE seriam necessários para os pixels dados
 static uint32_t yimg__contar_blocos_rle(const uint16_t* pixels, int total) {

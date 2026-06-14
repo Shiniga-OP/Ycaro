@@ -4,24 +4,38 @@
 #include <stdlib.h>
 #include "config.h"
 
-static size_t MEMORIA_BYTES_MAX = 1000 * 520; // 520 KB
-static size_t MEMORIA_USADA = 0; // memória alocada durante o processo
+static size_t MEM_MAX_DRAM = 1000 * 328; // 328 KB
+static size_t MEM_USADA_DRAM = 0; // memória alocada durante o processo
+static size_t MEM_MAX_IRAM = 1000 * 192; // 192 KB executável
+static size_t MEM_USADA_IRAM = 0; // memória alocada pra execução
+
+void* mem_alocar(size_t bytes);
+void mem_liberar(void* ponteiro, size_t bytes);
+void* mem_alocar_exec(size_t bytes);
+void mem_liberar_exec(void* ponteiro, size_t bytes);
+
 void* mem_alocar(size_t bytes) {
-    MEMORIA_USADA += bytes;
-    if(MEMORIA_USADA > MEMORIA_BYTES_MAX) {
+    MEM_USADA_DRAM += bytes;
+    if(MEM_USADA_DRAM > MEM_MAX_DRAM) {
         LOG("[LIMITE EXCEDIDO]: Memória usada maior do que disponível:\n");
         LOG("MEMÓRIA ALOCADA: %zu\n", bytes);
-        LOG("MEMORIA_USADA: %zu\n", MEMORIA_USADA);
-        LOG("MEMORIA_BYTES_MAX: %zu\n", MEMORIA_BYTES_MAX);
+        LOG("MEM_USADA_DRAM: %zu\n", MEM_USADA_DRAM);
+        LOG("MEM_MAX_DRAM: %zu\n", MEM_MAX_DRAM);
         exit(1);
     }
-    LOG("MEMORIA_USADA: %zu/%zu\n", MEMORIA_USADA, MEMORIA_BYTES_MAX);
+    LOG("MEM_USADA_DRAM: %zu/%zu\n", MEM_USADA_DRAM, MEM_MAX_DRAM);
     return (void*)malloc(bytes);
 }
 
 void mem_liberar(void* ponteiro, size_t bytes) {
-    MEMORIA_USADA -= bytes;
+    if(bytes > MEM_USADA_DRAM) {
+        LOG("[ERRO]: Liberando mais bytes do que está em uso (DRAM)\n");
+        exit(1);
+    }
+    MEM_USADA_DRAM -= bytes;
     free(ponteiro);
     LOG("MEMÓRIA LIBERADA: %zu\n", bytes);
-    LOG("MEMORIA_USADA: %zu/%zu\n", MEMORIA_USADA, MEMORIA_BYTES_MAX);
+    LOG("MEM_USADA_DRAM: %zu/%zu\n", MEM_USADA_DRAM, MEM_MAX_DRAM);
 }
+
+#include "../sistema/memexec.h"
