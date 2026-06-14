@@ -1,8 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <stdio.h>
-#include "tela.h"
-#include "../sistema/uart.h"
+#include "../logica/config.h"
 
 typedef struct {
     SDL_Window* janela;
@@ -16,8 +15,8 @@ void* _iniciar_renderizacao(Tela* tela) {
     Contexto* ctx = (Contexto*)malloc(sizeof(Contexto));
     
     if(SDL_Init(SDL_INIT_VIDEO) < 0) {
-        gravar("Erro SDL: %s\n", SDL_GetError());
-        sair(1);
+        LOG("Erro SDL: %s\n", SDL_GetError());
+        exit(1);
     }
     // 2. criar a janela
     ctx->janela = SDL_CreateWindow("tela emulador", 

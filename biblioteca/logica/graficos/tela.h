@@ -1,6 +1,7 @@
 #pragma once
 #include <string.h>
-#include "../sistema/mem.h"
+#include "../mem.h"
+#include "../config.h"
 
 typedef struct {
     int largura;
@@ -15,12 +16,16 @@ void _att_renderizacao(Tela* tela, void* dado);
 void _esperar_renderizacao(int ms);
 void _liberar_renderizacao(void* dadovoids);
 
+#include "../../sistema/video.h"
+
 Tela* tela_iniciar(int largura, int altura) {
     Tela* t = (Tela*)mem_alocar(sizeof(Tela));
     t->largura = largura;
     t->altura = altura;
     t->framebuffer = (unsigned short*)mem_alocar(sizeof(unsigned short) * (largura * altura));
     ctx = _iniciar_renderizacao(t);
+    LOG("Tela iniciada: %dx%d\n", largura, altura);
+    
     return t;
 }
 
