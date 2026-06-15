@@ -1,6 +1,5 @@
 #pragma once
 #include <stdint.h>
-#include "../sistema/es.h"
 
 #define CONTROLE_CIMA 7
 #define CONTROLE_ESQUERDA 6
@@ -14,6 +13,13 @@
 // estado dos 8 botões(bit = 1 significa pressionado)
 static uint8_t CONTROLE_ESTADO = 0;
 
+uint8_t controle_ler(uint8_t bit);
+void controle_def_estado(uint8_t estado);
+
 uint8_t controle_ler(uint8_t bit) {
     return (CONTROLE_ESTADO >> bit) & 1;
+}
+
+void controle_def_estado(uint8_t estado) {
+    CONTROLE_ESTADO = estado;
 }

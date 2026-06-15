@@ -1,51 +1,50 @@
-#include "logica/graficos/tela.h"
-#include "logica/graficos/yimg.h"
-#include "logica/controle.h"
-#include "logica/config.h"
+#include "ycaro1.h"
+#include "logica/colisao/objeto.h"
 
-int main() {
-    Tela* tela = tela_iniciar(240, 240);
+void entrada(void* ponteiro) {
+    Ycaro* yc = (Ycaro*)ponteiro;
+    Tela* tela = yc->tela_iniciar(240, 240);
     LOG("TESTE DE RENDERIZAÇÃO\n");
     
-    YImg *palito = yimg_carregar("kit-ycaro/palito.yimg");
+    YImg *palito = yc->yimg_carregar("kit-ycaro/palito.yimg");
     
-    int jogador_x = 100;
-    int jogador_y = 100;
+    Objeto jogador = { 100, 100, 30, 50 };
+    
     int VELO = 2;
     int rodando = 1;
     // loop Principal
     while(rodando) {
-        controle_att();
-        if(EVENTO_GLOBAL == EVENTO_SAIDA) {
+        yc->controle_att();
+        if(yc->obter_evento_global() == EVENTO_SAIDA) {
             rodando = 0;
         }
         // === LOGICA DO JOGO ===
-        if(controle_ler(CONTROLE_DIREITA)) {
-            jogador_x += VELO;
+        if(yc->controle_ler(CONTROLE_DIREITA)) {
+            jogador.x += VELO;
         }
-        if(controle_ler(CONTROLE_ESQUERDA)) {
-            jogador_x -= VELO;
+        if(yc->controle_ler(CONTROLE_ESQUERDA)) {
+            jogador.x -= VELO;
         }
-        if(controle_ler(CONTROLE_BAIXO)) {
-            jogador_y += VELO;
+        if(yc->controle_ler(CONTROLE_BAIXO)) {
+            jogador.y += VELO;
         }
-        if(controle_ler(CONTROLE_CIMA)) {
-            jogador_y -= VELO;
+        if(yc->controle_ler(CONTROLE_CIMA)) {
+            jogador.y -= VELO;
         }
         // === RENDERIZAÇÃO ===
         // limpa o framebuffer com preto(0x0000)
-        render_limpar(tela, 0);
+        yc->render_limpar(tela, 0);
 
         // desenha um "jogador"(retangulo vermelho, 0xF800)
-        render_retangulo(tela, jogador_x, jogador_y, 50, 30, 0xF800);
+        yc->render_retangulo(tela, jogador.x, jogador.y, jogador.largura, jogador.altura, 0xF800);
         
-        yimg_render(tela, palito, 10, 20);
+        yc->yimg_render(tela, palito, 10, 20);
         
-        render_att(tela);
-        render_esperar(16); // 60 fps
+        yc->render_att(tela);
+        yc->render_esperar(16); // 60 fps
     }
-    yimg_liberar(palito);
-    render_liberar(tela);
+    yc->yimg_liberar(palito);
+    yc->render_liberar(tela);
 
     return 0;
 }

@@ -36,7 +36,7 @@ void _att_renderizacao(Tela* tela, void* dado) {
     
     while(SDL_PollEvent(&ctx->evento)) {
         if(ctx->evento.type == SDL_QUIT) {
-            EVENTO_GLOBAL = EVENTO_SAIDA;
+            def_evento_global(EVENTO_SAIDA);
         }
     }
     // --- ENVIAR PARA A TELA ---
