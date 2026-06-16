@@ -1,7 +1,7 @@
 #pragma once
 
 #define DEBUG 1
-#define MOTOR 1
+#define MOTOR 0
 #define EVENTO_PADRAO 0
 #define EVENTO_SAIDA 1
 

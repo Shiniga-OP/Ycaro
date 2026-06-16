@@ -1,4 +1,5 @@
 TAREFA=$1
+CASA=/storage/emulated/0
 cp yc.sh $CASA/pacotes/ycaro
 # mata qualquer instancia anterior
 pkill -f termux-x11 2>/dev/null

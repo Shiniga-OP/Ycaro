@@ -15,7 +15,7 @@ void controle_att();
 
 // implementação:
 FILE* es_abrir(const char* caminho, const char* modo) {
-    FILE* a fopen(caminho, modo);
+    FILE* a = fopen(caminho, modo);
     if(a == NULL) {
         LOG("[ERRO] ao abrir arquivo no caminho %s\n", caminho);
     }
