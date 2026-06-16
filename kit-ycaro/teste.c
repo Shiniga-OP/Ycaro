@@ -1,12 +1,11 @@
-#include "ycaro1.h"
-#include "logica/colisao/objeto.h"
+#include "ycaro/ycaro1.h"
 
+__attribute__((section(".entrada")))
 void entrada(void* ponteiro) {
     Ycaro* yc = (Ycaro*)ponteiro;
     Tela* tela = yc->tela_iniciar(240, 240);
-    LOG("TESTE DE RENDERIZAÇÃO\n");
-    
-    YImg *palito = yc->yimg_carregar("kit-ycaro/palito.yimg");
+
+    YImg *palito = yc->yimg_carregar("recursos/palito.yimg");
     
     Objeto jogador = { 100, 100, 30, 50 };
     
@@ -45,6 +44,4 @@ void entrada(void* ponteiro) {
     }
     yc->yimg_liberar(palito);
     yc->render_liberar(tela);
-
-    return 0;
 }

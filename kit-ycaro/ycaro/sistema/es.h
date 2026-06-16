@@ -1,7 +1,7 @@
 #pragma once
-#include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdint.h>
+#include "../logica/config.h"
 #include "../logica/controle.h"
 
 FILE* es_abrir(const char* caminho, const char* modo);
@@ -10,9 +10,16 @@ void es_fechar(FILE* a);
 long es_tam(FILE* a);
 void controle_att();
 
+#if MOTOR
+#include <SDL2/SDL.h>
+
 // implementação:
 FILE* es_abrir(const char* caminho, const char* modo) {
-    return fopen(caminho, modo);
+    FILE* a fopen(caminho, modo);
+    if(a == NULL) {
+        LOG("[ERRO] ao abrir arquivo no caminho %s\n", caminho);
+    }
+    return a;
 }
 
 size_t es_ler(void* buf, size_t tam, size_t n, FILE* a) {
@@ -47,3 +54,4 @@ void controle_att() {
     if(teclas[SDL_SCANCODE_END]) estado |= (1 << 0);
     controle_def_estado(estado);
 }
+#endif

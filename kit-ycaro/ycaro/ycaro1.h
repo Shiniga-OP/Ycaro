@@ -1,9 +1,11 @@
 #pragma once
+
 #include "logica/mem.h"
+#include "logica/cartucho.h"
 #include "logica/controle.h"
 #include "logica/graficos/tela.h"
 #include "logica/graficos/yimg.h"
-#include "logica/cartucho.h"
+#include "logica/colisao/objeto.h"
 
 typedef struct {
     Tela* (*tela_iniciar)(int largura, int altura);
@@ -15,10 +17,11 @@ typedef struct {
     void (*render_liberar)(Tela* t);
     uint8_t (*controle_ler)(uint8_t bit);
     void (*controle_def_estado)(uint8_t estado);
+    void (*controle_att)();
     YImg* (*yimg_carregar)(const char *caminho);
     void (*yimg_render)(Tela* t, YImg* img, int x, int y);
     void (*yimg_liberar)(YImg *img);
     void (*def_evento_global)(int estado);
-    int (*obter_evento_global)(int estado);
+    int (*obter_evento_global)();
     void (*cartucho_carregar)(const char* caminho, void* ctx);
 } Ycaro;

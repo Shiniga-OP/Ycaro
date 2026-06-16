@@ -1,14 +1,8 @@
 #pragma once
 #include <stdint.h>
 #include "tela.h"
+#include "../config.h"
 #include "../../sistema/es.h"
-
-#define YIMG_TRANSPARENTE 0xF81F // magenta
-
-typedef enum {
-    YIMG_CRU = 0,
-    YIMG_RLE = 1,
-} YImgFormato;
 
 // formato RLE: sequência de blocos[uint16_t cor][uint8_t repeticoes]
 // repeticoes = quantidade de vezes que 'cor' se repete(1..255)
@@ -20,10 +14,17 @@ typedef struct {
     uint16_t* dados;
 } YImg;
 
-static uint32_t yimg__contar_blocos_rle(const uint16_t* pixels, int total);
 YImg* yimg_carregar(const char *caminho);
 void yimg_render(Tela* t, YImg* img, int x, int y);
 void yimg_liberar(YImg *img);
+
+#if MOTOR
+#define YIMG_TRANSPARENTE 0xF81F // magenta
+
+typedef enum {
+    YIMG_CRU = 0,
+    YIMG_RLE = 1,
+} YImgFormato;
 
 // conta quantos blocos RLE seriam necessários para os pixels dados
 static uint32_t yimg__contar_blocos_rle(const uint16_t* pixels, int total) {
@@ -120,3 +121,4 @@ void yimg_liberar(YImg *img) {
     mem_liberar(img->dados, img->dados_tam * sizeof(uint16_t));
     mem_liberar(img, sizeof(YImg));
 }
+#endif

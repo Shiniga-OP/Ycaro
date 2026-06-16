@@ -4,15 +4,16 @@
 #include <stdlib.h>
 #include "config.h"
 
-static size_t MEM_MAX_DRAM = 1000 * 328; // 328 KB
-static size_t MEM_USADA_DRAM = 0; // memória alocada durante o processo
-static size_t MEM_MAX_IRAM = 1000 * 192; // 192 KB executável
-static size_t MEM_USADA_IRAM = 0; // memória alocada pra execução
-
 void* mem_alocar(size_t bytes);
 void mem_liberar(void* ponteiro, size_t bytes);
 void* mem_alocar_exec(size_t bytes);
 void mem_liberar_exec(void* ponteiro, size_t bytes);
+
+#if MOTOR
+static size_t MEM_MAX_DRAM = 1000 * 328; // 328 KB
+static size_t MEM_USADA_DRAM = 0; // memória alocada durante o processo
+static size_t MEM_MAX_IRAM = 1000 * 192; // 192 KB executável
+static size_t MEM_USADA_IRAM = 0; // memória alocada pra execução
 
 void* mem_alocar(size_t bytes) {
     MEM_USADA_DRAM += bytes;
@@ -39,3 +40,4 @@ void mem_liberar(void* ponteiro, size_t bytes) {
 }
 
 #include "../sistema/memexec.h"
+#endif

@@ -9,8 +9,6 @@ typedef struct {
     unsigned short* framebuffer;
 } Tela;
 
-static void* ctx;
-
 Tela* tela_iniciar(int largura, int altura);
 void render_pixel(Tela* t, int x, int y, unsigned short cor);
 void render_retangulo(Tela* t, int x, int y, int largura, int altura, unsigned short cor);
@@ -18,6 +16,9 @@ void render_limpar(Tela* t, unsigned short cor);
 void render_att(Tela* t);
 void render_esperar(int ms);
 void render_liberar(Tela* t);
+
+#if MOTOR
+static void* ctx;
 
 #include "../../sistema/video.h"
 
@@ -67,3 +68,4 @@ void render_liberar(Tela* t) {
     mem_liberar(t, sizeof(Tela));
     _liberar_renderizacao(ctx);
 }
+#endif

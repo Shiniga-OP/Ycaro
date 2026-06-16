@@ -1,8 +1,11 @@
 #pragma once
 
 #include "mem.h"
+#include "config.h"
 #include "../sistema/es.h"
 
+void cartucho_carregar(const char *caminho, void* ctx);
+#if MOTOR
 void cartucho_carregar(const char *caminho, void* ctx) {
     FILE* arquivo = es_abrir(caminho, "rb");
     if(arquivo == NULL) {
@@ -20,3 +23,4 @@ void cartucho_carregar(const char *caminho, void* ctx) {
 
     mem_liberar_exec(destino, (size_t)tam);
 }
+#endif

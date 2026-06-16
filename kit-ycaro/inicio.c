@@ -1,4 +1,4 @@
-#include "ycaro1.h"
+#include "ycaro/ycaro1.h"
 
 __attribute__((section(".ycaro")))
 Ycaro g_tabela = {
@@ -11,6 +11,7 @@ Ycaro g_tabela = {
     .render_liberar = render_liberar,
     .controle_ler = controle_ler,
     .controle_def_estado = controle_def_estado,
+    .controle_att = controle_att,
     .yimg_carregar = yimg_carregar,
     .yimg_render = yimg_render,
     .yimg_liberar = yimg_liberar,
@@ -20,6 +21,6 @@ Ycaro g_tabela = {
 };
 
 int main() {
-    cartucho_carregar("teste.bin", &g_tabela);
+    cartucho_carregar("bin/inicio.bin", &g_tabela);
     return 0;
 }
